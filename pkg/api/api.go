@@ -13,8 +13,6 @@ import (
 const apiKey = "7b49eae9ef3d4a31bfa171753231203&q"
 const apiUrl = "https://api.weatherapi.com/v1/"
 
-const stringToCheck = "No matching location found."
-
 func GetWeather(city string) (models.ForecastDay, error) {
 	res, err := http.Get(apiUrl + "forecast.json?key=" + apiKey + "=" + city)
 
@@ -36,8 +34,8 @@ func GetWeather(city string) (models.ForecastDay, error) {
 
 	bodyString := string(body)
 
-	if strings.Contains(bodyString, stringToCheck) {
-		return models.ForecastDay{}, fmt.Errorf(helpers.FirstToLower(stringToCheck))
+	if strings.Contains(bodyString, "error") {
+		return models.ForecastDay{}, fmt.Errorf(helpers.FirstToLower("error"))
 	}
 
 	forecast := models.ForecastDay{}
