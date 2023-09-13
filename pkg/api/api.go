@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strings"
 	"weather-cli/models"
-	"weather-cli/pkg/helpers"
 )
 
 const apiKey = "7b49eae9ef3d4a31bfa171753231203&q"
@@ -35,7 +34,7 @@ func GetWeather(city string) (models.ForecastDay, error) {
 	bodyString := string(body)
 
 	if strings.Contains(bodyString, "error") {
-		return models.ForecastDay{}, fmt.Errorf(helpers.FirstToLower("error"))
+		return models.ForecastDay{}, fmt.Errorf("error")
 	}
 
 	forecast := models.ForecastDay{}
