@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	var cityName string
+	var input string
 	var forecast models.ForecastDay
 	var err error
 
@@ -34,9 +34,9 @@ func main() {
 			fmt.Println("Error: ", scanner.Err())
 		}
 
-		cityName = scanner.Text()
+		input = scanner.Text()
 
-		forecast, err = api.GetWeather(cityName)
+		forecast, err = api.GetWeather(input)
 
 		if err != nil {
 			fmt.Println()
